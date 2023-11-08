@@ -132,3 +132,120 @@ mixedArray = [10, 'stefano']
 // TUPLA (tuple)
 let tupleArray: [string, number] = ['stefano', 10]
 // tupleArray = [10, 'stefano'] // <-- errore, perchè il primo elemento DEVE essere una stringa e il secondo DEVE essere un numero
+
+// OGGETTI
+let favouriteTeacher = {
+  firstName: 'Stefano',
+  module: 'Frontend',
+}
+
+console.log(favouriteTeacher.firstName.slice(0, 1))
+
+favouriteTeacher.module = 'FullStack'
+
+// devo creare un array di oggetti che abbia la seguente forma:
+// {
+//   topics: string[]
+//   numberOfQuestions: number
+//   result: number
+//}
+
+// INTERFACCE (sono ideali per stabilire in anticipo le forme degli oggetti)
+interface Benchmark {
+  topics: string[] // obbligatoria
+  numberOfQuestions: number // obbligatoria
+  result?: number // opzionale (con il ?)
+}
+
+const W1Benchmark: Benchmark = {
+  topics: ['HTML', 'CSS'],
+  numberOfQuestions: 35,
+}
+
+const W2Benchmark: Benchmark = {
+  topics: ['JS'],
+  numberOfQuestions: 40,
+  result: 60,
+}
+
+const arrayOfBenchmarks: Benchmark[] = []
+arrayOfBenchmarks.push(W1Benchmark)
+arrayOfBenchmarks.push(W2Benchmark)
+
+const arrayOfTopics: string[] = []
+
+arrayOfBenchmarks.forEach((benchmark) => {
+  // let topics: string[] = []
+  benchmark.topics.forEach((topic) => {
+    arrayOfTopics.push(topic)
+  })
+})
+// ['HTML', 'CSS', 'JS']
+console.log(arrayOfTopics)
+
+// INTERFACES e EXTENDS
+interface HumanBeing {
+  height: number
+  numberOfHands?: number
+  hairColor: string
+  hasMoustaches: boolean
+}
+
+const marioBros: HumanBeing = {
+  hairColor: 'brown',
+  height: 60,
+  numberOfHands: 2,
+  hasMoustaches: true,
+}
+
+interface SoccerPlayer extends HumanBeing {
+  team: string
+  favouriteFoot: string
+}
+
+const player: SoccerPlayer = {
+  team: 'Genoa',
+  favouriteFoot: 'left',
+  hairColor: 'blonde',
+  height: 175,
+  hasMoustaches: false,
+  // non ha numberOfHands, ma era una proprietà opzionale quindi il mio oggetto resta valido
+}
+
+// GENERICS
+// Un GENERIC è un TIPO passato come ARGOMENTO ad un'interfaccia
+// nella definizione di interfaccia lo si definisce e lo si assegna come tipo per una o più proprietà
+// serve per rendere più RIUTILIZZABILE un'interfaccia (D R Y)
+// va passato all'interfaccia tramite parentesi angolari < >
+
+interface Address<A> {
+  city: string
+  street: string
+  civicNumber: number
+  zipCode: string
+  area: A
+}
+
+interface AmericanArea {
+  county: string
+  state: string
+}
+
+const italianAddress: Address<string> = {
+  city: 'Cagliari',
+  street: 'via Roma',
+  civicNumber: 1,
+  zipCode: '09125',
+  area: 'Sardinia',
+}
+
+const americanAddress: Address<AmericanArea> = {
+  city: 'Seattle',
+  street: '4th Avenue',
+  civicNumber: 345,
+  zipCode: '00000',
+  area: {
+    county: 'King',
+    state: 'Washington',
+  },
+}

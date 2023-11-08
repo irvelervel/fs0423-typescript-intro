@@ -98,3 +98,62 @@ mixedArray = [10, 'stefano'];
 // TUPLA (tuple)
 var tupleArray = ['stefano', 10];
 // tupleArray = [10, 'stefano'] // <-- errore, perchè il primo elemento DEVE essere una stringa e il secondo DEVE essere un numero
+// OGGETTI
+var favouriteTeacher = {
+    firstName: 'Stefano',
+    module: 'Frontend',
+};
+console.log(favouriteTeacher.firstName.slice(0, 1));
+favouriteTeacher.module = 'FullStack';
+var W1Benchmark = {
+    topics: ['HTML', 'CSS'],
+    numberOfQuestions: 35,
+};
+var W2Benchmark = {
+    topics: ['JS'],
+    numberOfQuestions: 40,
+    result: 60,
+};
+var arrayOfBenchmarks = [];
+arrayOfBenchmarks.push(W1Benchmark);
+arrayOfBenchmarks.push(W2Benchmark);
+var arrayOfTopics = [];
+arrayOfBenchmarks.forEach(function (benchmark) {
+    // let topics: string[] = []
+    benchmark.topics.forEach(function (topic) {
+        arrayOfTopics.push(topic);
+    });
+});
+// ['HTML', 'CSS', 'JS']
+console.log(arrayOfTopics);
+var marioBros = {
+    hairColor: 'brown',
+    height: 60,
+    numberOfHands: 2,
+    hasMoustaches: true,
+};
+var player = {
+    team: 'Genoa',
+    favouriteFoot: 'left',
+    hairColor: 'blonde',
+    height: 175,
+    hasMoustaches: false,
+    // non ha numberOfHands, ma era una proprietà opzionale quindi il mio oggetto resta valido
+};
+var italianAddress = {
+    city: 'Cagliari',
+    street: 'via Roma',
+    civicNumber: 1,
+    zipCode: '09125',
+    area: 'Sardinia',
+};
+var americanAddress = {
+    city: 'Seattle',
+    street: '4th Avenue',
+    civicNumber: 345,
+    zipCode: '00000',
+    area: {
+        county: 'King',
+        state: 'Washington',
+    },
+};
